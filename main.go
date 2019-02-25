@@ -12,17 +12,18 @@ func runMenu() {
 	var num int
 	bst := &BinarySearchTree{}
 
-	for num != 5 {
+	for num != 8 {
 		fmt.Println("\nChoose an option from the following list")
 		fmt.Println("1. Insert Numbers")
 		fmt.Println("2. Run In Order Traveral")
 		fmt.Println("3. Run Pre Order Traveral")
 		fmt.Println("4. Run Post Order Traveral")
-		fmt.Println("5. Quit\n")
+		fmt.Println("5. Get Max")
+		fmt.Println("6. Get Min")
+		fmt.Println("7. Contains")
+		fmt.Println("8. Quit\n")
 		
 		fmt.Scanf("%d", &num)
-
-		fmt.Print("\n")
 
 		switch num {
 		case 1:
@@ -34,6 +35,12 @@ func runMenu() {
 			fmt.Println(bst.preOrderTraversal())
 		case 4:
 			fmt.Println(bst.postOrderTraversal())
+		case 5:
+			fmt.Println(bst.getMax())
+		case 6:
+			fmt.Println(bst.getMin())
+		case 7:
+			search(bst)
 		}
 	}
 }
@@ -60,4 +67,12 @@ func getNum() int {
 	fmt.Scanf("%d", &num)
 	
 	return num
+}
+
+func search(bst *BinarySearchTree) {
+	if bst.contains(getNum()) {
+		fmt.Println("The number was found")
+	} else {
+		fmt.Println("The number was not found")
+	}
 }

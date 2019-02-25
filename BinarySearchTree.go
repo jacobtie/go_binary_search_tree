@@ -84,3 +84,41 @@ func (bst *BinarySearchTree) postOrderTraversal_helper(subRoot *BinaryTreeNode, 
 	bst.postOrderTraversal_helper(subRoot.Right, results)
 	*results = append(*results, subRoot.Element)
 }
+
+func (bst *BinarySearchTree) getMax() int {
+	return bst.getMax_helper(bst.root)
+}
+
+func (bst *BinarySearchTree) getMax_helper(subRoot *BinaryTreeNode) int {
+	if subRoot.Right == nil {
+		return subRoot.Element
+	}
+	return bst.getMax_helper(subRoot.Right)
+}
+
+func (bst *BinarySearchTree) getMin() int {
+	return bst.getMin_helper(bst.root)
+}
+
+func (bst *BinarySearchTree) getMin_helper(subRoot *BinaryTreeNode) int {
+	if subRoot.Left == nil {
+		return subRoot.Element
+	}
+	return bst.getMin_helper(subRoot.Left)
+}
+
+func (bst *BinarySearchTree) contains(num int) bool {
+	return bst.contains_helper(bst.root, num)
+}
+
+func (bst *BinarySearchTree) contains_helper(subRoot *BinaryTreeNode, num int) bool {
+	if subRoot == nil {
+		return false
+	} else if subRoot.Element == num {
+		return true
+	} else if subRoot.Element < num {
+		return bst.contains_helper(subRoot.Right, num)
+	} else {
+		return bst.contains_helper(subRoot.Left, num)
+	}
+}
